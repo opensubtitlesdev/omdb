@@ -2,6 +2,16 @@ require 'omdb/network'
 require 'omdb/movie'
 module Omdb
   class Api
+    
+    def self.config
+      @@config ||= {}
+    end
+
+    def self.key(api_key)
+      config[:api_key] = api_key
+    end
+    
+    
     def search(search_term)
       res = network.call(s: search_term)
       if res[:data]["Response"] == "False"
@@ -15,7 +25,7 @@ module Omdb
     # set tomatoes to true if you want to get the rotten tomatoes ranking
     # set plot to full if you want to have the full, long plot
     def fetch(title, year = "", tomatoes = false, plot = "short")
-      res = network.call({ t: title, y: year, tomatoes: tomatoes, plot: plot })
+      res = network.call({ t: title, y: year, tomatoes: tomatoes, plot: plot, apikey: @@config[:api_key] })
 
       if res[:data]["Response"] == "False"
         { status: 404 }
@@ -28,7 +38,7 @@ module Omdb
     # set tomatoes to true if you want to get the rotten tomatoes ranking
     # set plot to full if you want to have the full, long plot
     def find(id, tomatoes = false, plot = "short")
-      res = network.call({ i: id, tomatoes: tomatoes, plot: plot })
+      res = network.call({ i: id, tomatoes: tomatoes, plot: plot, apikey: @@config[:api_key] })
 
       if res[:data]["Response"] == "False"
         { status: 404 }

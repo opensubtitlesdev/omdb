@@ -27,6 +27,10 @@ Or install it yourself as:
 
 ## Usage
 
+### Enter your api key
+	Omdb::Api.key('YOUR API KEY')
+
+
 ### Finding movies
 
     Omdb::Api.new.search('MOVIE NAME')
