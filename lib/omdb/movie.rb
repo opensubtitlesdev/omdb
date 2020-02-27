@@ -5,7 +5,7 @@ module Omdb
       :imdb_id, :type, :metascore, :language, :country, :awards, :imdb_rating,
       :imdb_votes, :tomato_meter, :tomato_rating, :tomato_reviews, :tomato_fresh,
       :tomato_rotten, :tomato_consensus, :tomato_user_meter, :tomato_user_rating,
-      :tomato_user_reviews, :dvd, :box_office, :production, :website
+      :tomato_user_reviews, :dvd, :box_office, :production, :website, :ratings
 
     def initialize(movie)
       @title = movie["Title"]
@@ -25,6 +25,7 @@ module Omdb
       @language = movie["Language"]
       @country = movie["Country"]
       @awards = movie["Awards"]
+      @ratings = movie["Ratings"]
       @imdb_rating = movie["imdbRating"]
       @imdb_votes = movie["imdbVotes"]
       @tomato_meter = movie["tomatoMeter"]
